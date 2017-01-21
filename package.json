@@ -1,0 +1,17 @@
+{
+  "name": "day5project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "day5project.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "read-file": "^0.2.0",
+    "read-text-file": "^1.0.2",
+    "readline-sync": "^1.4.5"
+  }
+}
