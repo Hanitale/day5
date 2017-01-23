@@ -37,31 +37,17 @@ function readMenu() {
     var answer = readlineSync.keyInSelect(menu, 'choose from menu\n');
     switch (answer) {
         
-        case 0:                                                         //see file-system content
+        case 0:           //see file-system content
             console.log('you chose to see file content');
             isFather(currentFolder);
             break;
-        case 1:                                                         //move to another folder
+        case 1:           //move to another folder
             console.log('You chose to move to another folder');
             isFather(currentFolder);
             whereTo = readlineSync.question('where would you like to go?\n', answer)
-            //################################################
-            for(x=0; x<fsStorage.length; x++){            //creates a temporary array of the folder names
-                namesOfFolders.push(fsStorage[x][2]);}
-            index = namesOfFolders.indexOf(whereTo);     //checks if such a name exists
-            if (index ==-1) {console.log('Sorry, no such file or folder');
-                break;}
-            else{
-                if(whereTo.includes('.') && (!whereTo.includes('..'))){
-                    console.log('Sorry, this is not a folder');}
-                else{
-                    findItem(whereTo);
-                    } isFather(currentFolder);
-                                                      //goes to requested folder
-            break;}
-            //################################################
-
-           case 2:                                                        //create file or folder
+            moveTo(currentFolder,whereTo);
+            break;
+        case 2:             //create file or folder
             newItem = readlineSync.question('enter name of file to create? ', answer);
             for(x=0; x<fsStorage.length; x++){            //creates a temporary array of the folder names
                 namesOfFolders.push(fsStorage[x][2]);}
@@ -75,7 +61,7 @@ function readMenu() {
                     fsStorage.push([fsStorage.length, currentFolder, newItem]);      //adds folder to fs array
              } }   isFather(currentFolder);                                    //goes to show result
                     break;
-        case 3:                                                     //delete a file or folder
+        case 3:               //delete a file or folder
             isFather(currentFolder);
             console.log('you chose to delete a file or folder');
             itemToDelete = readlineSync.question('enter name of file?\n', answer);
@@ -137,6 +123,26 @@ else{
     }}}
 
 
+
+function moveTo(currentFolder, whereTo){
+
+    for(x=0; x<fsStorage.length; x++){           //creates a temporary array of the folder names
+        namesOfFolders.push(fsStorage[x][2]);}
+    index = namesOfFolders.indexOf(whereTo);     //checks if such a name exists
+    if (index ==-1) {console.log('Sorry, no such file or folder');
+        break;}
+    else{
+        if(whereTo.includes('.') && (!whereTo.includes('..'))){
+            console.log('Sorry, this is not a folder');}
+        else{
+            findItem(whereTo);
+        } isFather(currentFolder);
+
+}
+
+
+
+
 //function isFather checks for kids, their type, and put them in the kids array
 function isFather(currentFolder) {
     kids.length=0;
@@ -168,7 +174,15 @@ function showFileSystem(currentFolder) {
     }
 
 } 
-//console.log(fsStorage);
+
+function tests(test){
+    ifNumber(){
+        
+    }
+
+    }
+}
+
 readMenu();
 
 
